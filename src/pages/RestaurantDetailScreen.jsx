@@ -23,14 +23,14 @@ const RestaurantDetailScreen = () => {
       userName: '鈴木一郎', 
       userIcon: 'https://meikyukai.jp/wp-content/uploads/2020/06/51_ichiro.jpg',
       rating: 2, 
-      comment: '値段の割に合わない気がする。' 
+      comment: '値段の割に合わない気がする。\n\nチーズハンバーグを頼んだが、レトルトな感じでした。\n\nさらに、スープセットにしたが、スープは一種類。' 
     },
     { 
       id: 1, 
       userName: '佐藤二郎', 
       userIcon: 'http://www.from1-pro.jp/images/t_10/img_l.jpg?1597426029',
       rating: 3, 
-      comment: 'タブレットによる注文に変わったが、慣れが必要。' 
+      comment: 'タブレットによる注文に変わったが、慣れが必要。\n\nメニューを広げて、料理を比べたい。\n\nこの方式で価格が下がればよいが、、、' 
     },
   ]);
 
@@ -44,6 +44,10 @@ const RestaurantDetailScreen = () => {
     };
     setReviews([...reviews, reviewToAdd]);
     setIsReviewFormOpen(false);
+  };
+
+  const handleReviewClick = (reviewId) => {
+    navigate(`/restaurant/${id}/review/${reviewId}`);
   };
 
   return (
@@ -61,19 +65,24 @@ const RestaurantDetailScreen = () => {
         </div>
         <h2 className="text-lg font-semibold mb-2">レビュー</h2>
         {reviews.map((review) => (
-          <div key={review.id} className="bg-white p-4 mb-4 rounded-lg shadow">
-            <div className="flex items-center mb-2">
-              <img src={review.userIcon} alt={review.userName} className="w-10 h-10 rounded-full mr-3" />
-              <div>
-                <p className="font-medium">{review.userName}</p>
-                <div className="flex items-center">
-                  <Star className="text-yellow-400 w-4 h-4 mr-1" />
-                  <span>{review.rating}</span>
-                </div>
+          <Link 
+          key={review.id} 
+          to={`/restaurant/${id}/review/${review.id}`}
+          state={{ from: '/reviews' }}
+          className="block bg-white p-4 mb-4 rounded-lg shadow hover:shadow-md transition-shadow"
+        >
+          <div className="flex items-center mb-2">
+            <img src={review.userIcon} alt={review.userName} className="w-10 h-10 rounded-full mr-3" />
+            <div>
+              <p className="font-medium">{review.userName}</p>
+              <div className="flex items-center">
+                <Star className="text-yellow-400 w-4 h-4 mr-1" />
+                <span>{review.rating}</span>
               </div>
             </div>
-            <p className="text-gray-600">{review.comment}</p>
           </div>
+          <p className="text-gray-600 truncate">{review.comment}</p>
+        </Link>
         ))}
         <button
           onClick={() => setIsReviewFormOpen(true)}

@@ -14,7 +14,7 @@ const AllReviewsScreen = () => {
       userName: '鈴木一郎', 
       userIcon: 'https://meikyukai.jp/wp-content/uploads/2020/06/51_ichiro.jpg',
       rating: 2, 
-      comment: '値段の割に合わない気がする。' 
+      comment: '値段の割に合わない気がする。\n\nチーズハンバーグを頼んだが、レトルトな感じでした。\n\nさらに、スープセットにしたが、スープは一種類。' 
     },
     { 
       id: 1, 
@@ -22,7 +22,7 @@ const AllReviewsScreen = () => {
       userName: '佐藤二郎', 
       userIcon: 'http://www.from1-pro.jp/images/t_10/img_l.jpg?1597426029',
       rating: 3, 
-      comment: 'タブレットによる注文に変わったが、慣れが必要。' 
+      comment: 'タブレットによる注文に変わったが、慣れが必要。\n\nメニューを広げて、料理を比べたい。\n\nこの方式で価格が下がればよいが、、、' 
     },
     { 
       id: 2, 

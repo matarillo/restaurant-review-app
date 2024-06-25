@@ -46,13 +46,13 @@ const AccountScreen = () => {
       id: 0,
       restaurantName: "ガスト東岡崎店",
       rating: 2,
-      comment: "値段の割に合わない気がする。",
+      comment: "値段の割に合わない気がする。\n\nチーズハンバーグを頼んだが、レトルトな感じでした。\n\nさらに、スープセットにしたが、スープは一種類。",
     },
     {
       id: 1,
       restaurantName: "デニーズ東岡崎店",
       rating: 3,
-      comment: "タブレットによる注文に変わったが、慣れが必要。",
+      comment: "タブレットによる注文に変わったが、慣れが必要。\n\nメニューを広げて、料理を比べたい。\n\nこの方式で価格が下がればよいが、、、",
     },
   ]);
 
@@ -191,7 +191,7 @@ const AccountScreen = () => {
               <Star className="text-yellow-400 w-4 h-4 mr-1" />
               <span>{review.rating}</span>
             </div>
-            <p className="text-gray-700">{review.comment}</p>
+            <p className="text-gray-600 truncate">{review.comment}</p>
           </div>
         ))}
 

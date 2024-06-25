@@ -3,25 +3,30 @@ import { useParams, Link, useLocation, useNavigate } from 'react-router-dom';
 import { Star, User, ArrowLeft } from 'lucide-react';
 
 const ReviewDetailScreen = () => {
-  const { id } = useParams();
+  const { restaurantId, id: reviewId } = useParams();
   const location = useLocation();
   const navigate = useNavigate();
   
   // この部分は通常、APIからデータを取得するロジックに置き換えます
   const review = {
-    id: id,
+    id: reviewId,
     restaurantName: 'ガスト東岡崎店',
     userName: '鈴木一郎',
     userIcon: 'https://meikyukai.jp/wp-content/uploads/2020/06/51_ichiro.jpg',
     rating: 2,
-    comment: '値段の割に合わない気がする。チーズハンバーグを頼んだが、レトルトな感じでした。さらに、スープセットにしたが、スープは一種類。',
+    comment: '値段の割に合わない気がする。\n\nチーズハンバーグを頼んだが、レトルトな感じでした。\n\nさらに、スープセットにしたが、スープは一種類。',
     date: '2023-06-22'
   };
 
   const handleBack = () => {
-    if (location.state?.from) {
-      navigate(location.state.from);
+    const searchParams = new URLSearchParams(location.search);
+    const from = searchParams.get('from');
+
+    if (restaurantId !== undefined && restaurantId !== null) {
+      // RestaurantDetailScreenからの遷移の場合
+      navigate(`/restaurant/${restaurantId}`);
     } else {
+      // AllReviewsScreenからの遷移の場合
       navigate('/reviews');
     }
   };
@@ -47,7 +52,7 @@ const ReviewDetailScreen = () => {
           <Star className="text-yellow-400 mr-1" />
           <span className="text-xl font-bold">{review.rating}</span>
         </div>
-        <p className="text-gray-700 whitespace-pre-line">{review.comment}</p>
+        <p className="text-gray-700 whitespace-pre-wrap">{review.comment}</p>
       </div>
     </div>
   );
